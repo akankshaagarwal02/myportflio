@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bars</title>
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery Knob Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-knob/dist/jquery.knob.min.js"></script>
+    <style>
+        .rr-about-area {
+            padding-bottom: 100px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .rr-about-progressbar-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-top: 20px;
+        }
+        .rr-about-3-progressbar {
+            text-align: center;
+            z-index: 3;
+            margin-bottom: 20px;
+        }
+        .circular {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section class="rr-about-area pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="rr-about-progressbar-inner d-flex flex-wrap pt-20">
+                        <div class="rr-about-3-progressbar text-center z-index-3">
+                            <div class="circular tl-progress">
+                                <input type="text" class="knob" value="0" data-rel="50" data-linecap="round" data-width="96"
+                                    data-height="96" data-bgcolor="#eeeeee" data-fgcolor="#e72254" data-thickness=".2"
+                                    data-readonly="true" disabled />
+                            </div>
+                            <div class="rr-about-3-progressbar-title">
+                                <p>Happy Client</p>
+                            </div>
+                        </div>
+                        <div class="rr-about-3-progressbar text-center z-index-3">
+                            <div class="circular tl-progress">
+                                <input type="text" class="knob" value="0" data-rel="63" data-linecap="round" data-width="96"
+                                    data-height="96" data-bgcolor="#eeeeee" data-fgcolor="#e72254" data-thickness=".2"
+                                    data-readonly="true" disabled />
+                            </div>
+                            <div class="rr-about-3-progressbar-title">
+                                <p>Science Laboratory</p>
+                            </div>
+                        </div>
+                        <div class="rr-about-3-progressbar text-center z-index-3">
+                            <div class="circular tl-progress">
+                                <input type="text" class="knob" value="0" data-rel="70" data-linecap="round" data-width="96"
+                                    data-height="96" data-bgcolor="#eeeeee" data-fgcolor="#e72254" data-thickness=".2"
+                                    data-readonly="true" disabled />
+                            </div>
+                            <div class="rr-about-3-progressbar-title">
+                                <p>Doctor Support</p>
+                            </div>
+                        </div>
+                        <div class="rr-about-3-progressbar text-center z-index-3">
+                            <div class="circular tl-progress">
+                                <input type="text" class="knob" value="0" data-rel="50" data-linecap="round" data-width="96"
+                                    data-height="96" data-bgcolor="#eeeeee" data-fgcolor="#e72254" data-thickness=".2"
+                                    data-readonly="true" disabled />
+                            </div>
+                            <div class="rr-about-3-progressbar-title">
+                                <p>Medical Choice</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $('.knob').each(function () {
+                var $this = $(this);
+                var myVal = $this.attr("data-rel");
+
+                $this.knob({
+                    'draw': function () {
+                        $(this.i).val(this.cv + '%')
+                    }
+                });
+
+                $({
+                    value: 0
+                }).animate({
+                    value: myVal
+                }, {
+                    duration: 1000,
+                    easing: 'swing',
+                    step: function () {
+                        $this.val(Math.ceil(this.value)).trigger('change');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
